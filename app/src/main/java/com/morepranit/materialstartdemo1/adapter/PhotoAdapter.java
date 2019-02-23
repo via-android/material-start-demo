@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
     private Context context;
     private ArrayList<PhotoModel> photoModels;
+    private OnItemClickListener onItemClickListener;
 
     public PhotoAdapter(Context context, ArrayList<PhotoModel> photoModels) {
         this.context = context;
@@ -49,11 +51,28 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitle;
         ImageView imageView;
+        LinearLayout mainContainer;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.txt_title);
             imageView = itemView.findViewById(R.id.image_view);
+            mainContainer = itemView.findViewById(R.id.main_container);
+
+            mainContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(itemView, getAdapterPosition());
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
+        this.onItemClickListener = onItemClickLitener;
     }
 }

@@ -1,5 +1,6 @@
 package com.morepranit.materialstartdemo1.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.morepranit.materialstartdemo1.AppController;
+import com.morepranit.materialstartdemo1.DisplayActivity;
+import com.morepranit.materialstartdemo1.MainActivity;
 import com.morepranit.materialstartdemo1.R;
 import com.morepranit.materialstartdemo1.adapter.PhotoAdapter;
 import com.morepranit.materialstartdemo1.models.PhotoModel;
@@ -46,6 +49,18 @@ public class MListFragment extends Fragment {
 
         adapter = new PhotoAdapter(getContext(), photoModels);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickLitener(new PhotoAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                PhotoModel model = photoModels.get(position);
+
+                Intent intent = new Intent(getContext(), DisplayActivity.class);
+                intent.putExtra("title", model.getTitle());
+                intent.putExtra("image", model.getUrl());
+                startActivity(intent);
+            }
+        });
 
         getPhotos();
 

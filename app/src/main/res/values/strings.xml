@@ -14,4 +14,5 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cupiditate esse excepturi facilis fuga id in itaque, libero maiores, nesciunt obcaecati omnis placeat quas quasi quisquam quos temporibus totam unde.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cupiditate esse excepturi facilis fuga id in itaque, libero maiores, nesciunt obcaecati omnis placeat quas quasi quisquam quos temporibus totam unde.
     </string>
+    <string name="title_activity_display">DisplayActivity</string>
 </resources>
